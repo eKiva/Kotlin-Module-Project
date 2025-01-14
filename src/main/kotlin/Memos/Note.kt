@@ -4,25 +4,23 @@ import Archive.Archive
 
 class Note (val name: String, var text: String)
 
-public fun createNote(name: String, text: String): Note {
+public fun newNote(name: String, text: String): Note {
     return Note(name, text)
 }
 
 
 public fun getScreenNotes(archive:  Archive) {
     println("* ЗАМЕТКИ АРХИВА ${archive.name} *")
-    printPointOfMenu(number = 0, text = "Создать заметку")
-    for (note in archive.notes) {
-        printPointOfMenu(note.key, note.value!!.name)
-    }
-    printPointOfMenu(number = archive.notes.size + 1, text = "Выход")
+    println("0. Создать заметку")
+    archive.notes.forEach{ println ("${it.key}. ${it.value!!.name}")}
+    println ("${archive.notes.size + 1}. Выход (Вернуться к списку архивов)")
 }
 
-public fun getFullNote(note: Note) {
+
+public fun getScreenNoteInfo(note: Note) {
     println("* ЗАМЕТКА ${note.name} *")
-    printPointOfMenu(number = 0, text = "Просмотреть заметку")
-    printPointOfMenu(number = 1, text = "Изменить заметку")
-    printPointOfMenu(number = 2, text = "Выход")
+    println("Текст заметки: ${note.text}")
+    println("0. Изменить текст заметки")
+    println("1. Выход (Вернуться к списку заметок архива)")
 }
 
-public fun printPointOfMenu(number: Int, text: String) { println ("${number}. $text") }
